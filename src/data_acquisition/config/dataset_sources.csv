@@ -1,0 +1,4 @@
+name,filetype,url,file_id,filepath
+world_bank_unemployment,zip,https://api.worldbank.org/v2/en/indicator/SL.UEM.TOTL.ZS?downloadformat=csv,,data/raw/zip/world_bank_unemployment.zip
+stackoverflow_survey_2025,zip,https://survey.stackoverflow.co/datasets/stack-overflow-developer-survey-2025.zip,,data/raw/zip/stackoverflow_survey_2025.zip
+luke_tech_job_postings,google_drive,,1xiNSeNRKiuTrCDmJbDo3ukom47HaBeQj,data/raw/csv/luke_tech_jobs.csv
