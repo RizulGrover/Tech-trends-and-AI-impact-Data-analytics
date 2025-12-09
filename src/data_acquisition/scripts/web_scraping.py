@@ -27,21 +27,51 @@ def fetch_remote_jobs():
     filepath="data/raw/web/remote_jobs.csv"
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
-    with open(filepath, "w", newline="") as file:
+    existing_urls=set()       # We use a set because it has faster duplicate checking
+
+    if os.path.exists(filepath):
+        with open(filepath, "r", newline="", encoding="utf-8") as file:
+            reader=csv.DictReader(file)
+
+            for row in reader:
+                existing_urls.add(row['url'])
+
+        file_mode='a'
+        write_header=False
+
+    else:
+        file_mode='w'
+        write_header=True
+  
+
+    with open(filepath, file_mode, newline="", encoding="utf-8") as file:
         csv_writer=csv.writer(file)
-        csv_writer.writerow(['company','title','tags','epoch','date','url'])
+
+        if write_header:
+            csv_writer.writerow(['company','title','tags','epoch','date','url'])
+
+        new_count=0
 
         for job in jobs:
-            csv_writer.writerow([
-                job.get('company'),
-                job.get('position'),
-                ", ".join(job.get('tags', [])),
-                job.get('epoch'),
-                job.get('date'),
-                "https://remoteok.com"+job.get('url', "")
-            ])
+            url_job="https://remoteok.com" + job.get('url', "")
 
-    print(f'Saved {len(jobs)} in the file')
+            if url_job in existing_urls:
+                continue
+
+            else:
+                csv_writer.writerow([
+                    job.get('company'),
+                    job.get('position'),
+                    ", ".join(job.get('tags', [])),
+                    job.get('epoch'),
+                    job.get('date'),
+                    url_job
+                ])
+
+                new_count+=1
+
+    print(f'New jobs added today in file = {new_count}')
+    print(f'Total jobs in the CSV file = {len(existing_urls) + new_count}')
 
 
 if __name__=="__main__":

@@ -11,6 +11,7 @@ projectvenv/
 
 # Ignore all data folders
 data/
+docs/
 
 # OS
 .DS_Store
