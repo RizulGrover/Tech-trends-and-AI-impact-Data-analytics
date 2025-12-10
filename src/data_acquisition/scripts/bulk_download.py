@@ -6,8 +6,14 @@ import gdown
 
 
 def download_csv(url, filepath, name):
+
+    if os.path.exists(filepath):
+        print(f'File {name} already downloaded')
+        return
+
     response=requests.get(url)
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
+
     with open(filepath, "wb") as file:
         file.write(response.content)
     print(f"File {name} - CSV downloaded successfully")
@@ -15,13 +21,19 @@ def download_csv(url, filepath, name):
 
 
 def download_zip(url, filepath, name):
+
+    if os.path.exists(filepath):
+        print(f'File {name} already downloaded')
+        return
+
     response=requests.get(url)
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
+
     with open(filepath, "wb") as file:
         file.write(response.content)
     print(f"File {name} - ZIP downloaded successfully")
 
-    extract_folder = "data/raw/zip_extracted/"
+    extract_folder = f"data/raw/zip_extracted/{name}"
     os.makedirs(extract_folder, exist_ok=True)
 
     try:
@@ -34,7 +46,13 @@ def download_zip(url, filepath, name):
 
 
 def download_google_drive(file_id, filepath, name):
+
+    if os.path.exists(filepath):
+        print(f'File {name} already downloaded')
+        return
+    
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
+
     url = f"https://drive.google.com/uc?id={file_id}"
     gdown.download(url, filepath, quiet=False)
     print(f"{name} - Google Drive Download → {filepath}")
