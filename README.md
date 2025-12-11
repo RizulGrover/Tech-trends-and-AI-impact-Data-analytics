@@ -1,190 +1,320 @@
-# 🌍 Technology Trends & Emerging Tech Landscape Analytics
 
-This project focuses on understanding how technology, automation, AI adoption, and global economic shifts are impacting jobs, skills, demand, and workforce transformation. By combining multiple datasets, APIs, scraping scripts, and analytical pipelines, the project aims to:
-
-- Identify **which industries are growing or shrinking**
-- Analyze **AI automation risk across job categories**
-- Study **layoff patterns across geography, time, and sector**
-- Examine **global unemployment trends**
-- Understand **reskilling strategies and future skill demand**
-
-This serves as a real-world data engineering + analytics + ML portfolio project.
+# Technology Trends & Emerging Tech Landscape Analytics
+A comprehensive data engineering, analytics, and machine learning project examining global technology trends and their impact on jobs, skills, industries, and workforce transformation. This project combines multi-source data ingestion, structured ETL pipelines, exploratory analytics, risk modeling, and visualization components.
 
 ---
 
-## 🧭 Project Phases (End-to-End Roadmap)
+## 1. Project Overview
+This project investigates how emerging technologies — including automation, AI systems, cloud adoption, generative AI tools, and industry shifts — are influencing job markets, skill requirements, and economic dynamics. The analysis spans several years of data, multiple global datasets, and varied methodological approaches.
+
+The project integrates:
+- Real-time job market data (scraped + API)
+- Layoff data across companies and industries
+- AI automation impact datasets
+- Global unemployment indicators
+- Developer ecosystem datasets (Stack Overflow 2020 & 2025)
+
+---
+
+## 2. End-to-End Pipeline Roadmap
 
 | Phase | Description | Status |
-|-------|------------|--------|
-| **Phase 1 — Data Acquisition** | Gathering datasets from scraping, APIs, downloads | ✔ Completed |
-| **Phase 2 — Data Cleaning** | Excel + SQL + Pandas Cleaning Pipelines | 🟡 In Progress |
-| **Phase 3 — Analytics & Insights** | Exploratory + Business insights | ⏳ Upcoming |
-| **Phase 4 — Dashboards** | Excel + Power BI + Interactive visuals | ⏳ Upcoming |
-| **Phase 5 — ML & NLP Models** | Forecasting, trend prediction, text analytics | ⏳ Later |
-| **Phase 6 — Automation & APIs** | FastAPI endpoints for serving insights | ⏳ Later |
-| **Phase 7 — Final Reporting** | Strategy recommendations + storytelling | ⏳ Final Stage |
+|-------|-------------|--------|
+| Phase 1 — Data Acquisition | Scraping, APIs, dataset ingestion | Completed |
+| Phase 2 — Data Cleaning | Multi-stage SQL, Excel, and Python transformations | Completed (core datasets) |
+| Phase 3 — Analysis & Insights | Exploratory and statistical analysis | In Progress |
+| Phase 4 — Dashboards | Interactive visualizations (Power BI, Excel) | Upcoming |
+| Phase 5 — ML & NLP Modeling | Forecasting, classification, clustering, NLP | Upcoming |
+| Phase 6 — API & Automation | FastAPI service layer for insights | Later stage |
+| Phase 7 — Final Reporting | Strategic insights & storytelling | Final stage |
 
 ---
 
-## 📦 Phase 1 — Data Acquisition (Completed)
+## 3. Project Structure (Recommended Repository Layout)
 
-Data was collected using **three different acquisition methods**, demonstrating versatility in real-world workflows:
-
-| Source | Method | What was received |
-|--------|--------|------------------|
-| RemoteOK | Web Scraping + JSON API | Live job listings (role, tags, company, date) |
-| Luke Tech Job Dataset | Public dataset | ~478K tech job postings |
-| Layoffs Dataset | Public dataset | Layoffs by company, country, counts |
-| AI Impact on Jobs 2030 | Research dataset | Risk & automation impact |
-| Stack Overflow Developer Survey | Public dataset | Skill usage, trends, education |
-| World Bank Indicators | Download/API | Country unemployment % over decades |
-
-### ✔ Work Completed in Phase 1
-
-- `Python + Requests` used for programmatic scraping of RemoteOK jobs  
-- Duplicate handling logic implemented to **append only new rows**  
-- Raw and cleaned data folder structure established (`/data/raw/` `/data/clean/`)  
-- Multiple dataset formats handled: JSON, CSV, Excel, API responses  
-- Data stored for **future time-series trend tracking**  
-- Documented purpose and design for each dataset  
-
-> Phase 1 establishes the data foundation needed for analysis, forecasting, and ML.
-
----
-
-## 🧹 Phase 2 — Data Cleaning & Preparation  
-
-To demonstrate real-world ETL capability across multiple tools, this project uses **three different cleaning pipelines** depending on dataset size, structure, and analytical purpose:
-
-| Pipeline | Tool | Purpose |
-|----------|------|---------|
-| Pipeline 1 | Excel + Power Query | Business-user workflows, documentation-ready |
-| Pipeline 2 | SQL (BigQuery) | Relational, join-driven cleaning |
-| Pipeline 3 | Python Pandas | Large-scale + automated transformations |
+```
+project_root/
+│
+├── data/
+│   ├── raw/
+│   ├── interim/
+│   ├── cleaned/
+│
+├── src/
+│   ├── data_cleaning/
+│   │   ├── scripts/
+│   │   │   ├── stackoverflow_2020/
+│   │   │   ├── stackoverflow_2025/
+│   │   │   ├── worldbank/
+│   │   │   ├── layoffs/
+│   │   ├── python_cleaning/
+│   │   ├── feature_engineering/
+│   │
+│   ├── visualization/
+│   ├── modeling/
+│
+├── notebooks/
+│   ├── 01_data_cleaning.ipynb
+│   ├── 02_eda.ipynb
+│   ├── 03_feature_engineering.ipynb
+│   ├── 04_modeling.ipynb
+│
+└── README.md
+```
 
 ---
 
-# 🧼 Cleaning Pipeline 1 — Excel + Power Query  
-**Tools:** Microsoft Excel, Power Query  
-**Objective:** Clean small-to-medium sized business datasets suitable for analyst workflows and dashboard consumption.
+## 4. Phase 1 — Data Acquisition
 
-This pipeline was used to clean:
+### 4.1 RemoteOK Job Scraping
+Collected via:
+- HTTP GET requests
+- JSON parsing
+- Duplicate protection logic  
+Used for real-time skill/trend tracking.
 
-| Dataset | Size |
-|--------|------|
-| Layoffs Data | ~3600 rows |
-| AI Impact on Jobs by 2030 | ~3000 rows |
+### 4.2 Luke Tech Job Dataset
+Provided ~478k historical job postings for long-term analysis.
 
----
+### 4.3 Layoffs Dataset
+Includes:
+- Company layoffs
+- Country
+- Industry
+- Time-based patterns
 
-## ✔ Dataset 1 — Layoffs Data Cleaning (Completed)
+### 4.4 AI Impact on Jobs Dataset
+Contains:
+- Automation probability
+- AI exposure index
+- Skill readiness metrics
+- Job disruption probability
 
-**Goal:** Prepare dataset for layoff trends, country-wise impact, industry patterns, and severity metrics.
+### 4.5 Stack Overflow Developer Surveys (2020, 2025)
+Key for:
+- Skill usage trends
+- Role demand
+- Salary insights
+- AI tool adoption patterns
 
-### Transformations Applied (Power Query)
-
-| Step | Description |
-|------|------------|
-| Removed redundant columns | Removed fields not required for analytical value |
-| Trimmed textual fields | Cleaned whitespace in Company, Location, Industry |
-| Standardized date structure | Split timestamp, retained date only |
-| Created new calculated field | `Layoff Ratio = Laid_Off_Count / Total_Workforce` |
-| Converted ratio to percentage | Enables comparison across companies |
-| Filtered null or empty percentage rows | Removed incomplete data |
-| Screenshot documentation | Captured Power Query `Applied Steps` panel |
-
-📁 Screenshots stored: `/docs/cleaning_pipeline_1_powerquery/layoffs/`  
-📄 Cleaned file saved: `/data/clean/layoffs_clean.csv`
-
-### Why this matters
-- Enables **time-series analysis of layoffs**
-- Normalized metrics allow **fair comparisons**
-- Dataset becomes ready for **Power BI dashboards & pivot tables**
-- Practical alignment with **real business analyst cleaning practices**
+### 4.6 World Bank Indicators
+Collected unemployment data using manual downloads and API queries.
 
 ---
 
-## ✔ Dataset 2 — AI Impact on Jobs by 2030 (Completed)
+## 5. Phase 2 — Data Cleaning Workflows
 
-**Goal:** Measure multi-factor job disruption risk through AI exposure, automation, skill readiness, and tech growth.
-
-### Transformations Applied (Power Query)
-
-| Step | Description |
-|------|------------|
-| Trimmed data fields | Cleaned whitespace in text columns |
-| Added `avg_skill_score` | Average of Skill_1 through Skill_10 |
-| Removed Skill_1 – Skill_10 columns | Retained only calculated skill index to simplify dataset |
-| Created `final_job_risk_score` | Weighted composite score combining four predictors |
-| Added `risk_category` (conditional column) | Classified roles into risk buckets for dashboards |
-
-### Formula for Composite Job Risk Score
-
-A weighted model was developed:
-
-Final Job Risk Score =
-(0.40 × Automation_Probability_2030) +
-(0.20 × AI_Exposure_Index) +
-(0.25 × (1 − Avg_skill_score)) +
-(0.15 × (1 − Tech_Growth_Factor))
-
-
-- Higher automation probability increases risk  
-- Higher AI exposure increases disruption probability  
-- Higher skill readiness reduces risk  
-- Higher growth sectors reduce risk  
-
-### Risk Binning Applied
-
-| Score Range | Category |
-|------------|----------|
-| 0.00 – 0.20 | Very Low |
-| 0.21 – 0.40 | Low |
-| 0.41 – 0.60 | Medium |
-| 0.61 – 0.80 | High |
-| 0.81 – 1.00 | Very High |
-
-📁 Screenshots stored: `/docs/cleaning_pipeline_1_powerquery/ai_impact/`  
-📄 Cleaned file saved: `/data/clean/ai_impact_clean.csv`
-
-### Why this matters
-- The model translates **raw complexity into actionable insights**
-- Adds **AI-readiness & automation-risk score** for ML and dashboards
-- Enables **policy-level and reskilling strategy discussion**
-- Creates a **KPI usable for visualization and risk heatmaps**
+The project uses three cleaning pipelines selected based on dataset size, complexity, and desired reproducibility.
 
 ---
 
-## 🎯 Summary of Pipeline 1 Outcomes
+## 5.1 Cleaning Pipeline 1 — Excel + Power Query  
+Used for small datasets such as:
+- Layoffs dataset
+- AI Impact dataset
 
-| Dataset | Cleaned | New Metrics Added | Ready for |
-|--------|--------|------------------|-----------|
-| Layoffs | ✔ | % Layoff Impact | Time-series & Geography BI |
-| AI Impact | ✔ | Skill Index + Final Job Risk Score + Risk Buckets | Risk dashboards, ML |
+Key operations:
+- Column trimming
+- Conditional transformations
+- Ratio metrics (layoff percentage)
+- Feature engineering (skill score, risk score)
+- Bucketization (risk categories)
 
-Power Query not only performed cleaning but also **feature engineering**, converting raw data into meaningful analytical attributes.
+Outputs stored in:
+```
+/data/cleaned/
+```
 
 ---
 
-## 🧼 Cleaning Pipeline 2 — BigQuery SQL (Completed)
+## 5.2 Cleaning Pipeline 2 — BigQuery SQL (Core ETL Logic)
 
-### ✔ Dataset — World Bank Unemployment Data
+BigQuery is used for large structured datasets requiring transformation, normalization, deduplication, and outlier handling.  
+The three major SQL scripts used are:
 
-**Goals**
-- Convert wide CSV (columns = years) into long format
-- Standardize country names
-- Remove aggregate regions (not countries)
-- Export cleaned version for ML & dashboards
+---
 
-### SQL Cleaning Script (saved in repo)
+### Script 1 — Null Removal & Type Standardization (`*_nullremove.sql`)
 
-📄 Saved at:  
-`/src/data_cleaning/scripts/bigquery/worldbank_cleaning.sql`
+Purpose:
+- Normalize string fields
+- Convert textual values like "NA", "n/a", "", etc. to NULL
+- Convert numerical fields using SAFE_CAST
+- Enforce valid domain values (e.g., salary > 0)
+- Remove invalid entries (negative salaries, invalid years of experience)
 
-📁 Screenshots stored at:  
-`/docs/cleaning_pipeline_bigquery/worldbank_data/`
+Core operations:
+- COALESCE / NULLIF for string normalization  
+- SAFE_CAST for numeric conversion  
+- Conditional handling for domain filters  
+- Retain all other untouched fields via `* EXCEPT(...)` projection  
 
-### Output File
-Download via Cloud Storage → export locally at:
-`/data/cleaned`
+Outputs labeled as:
+```
+SO_data_20XX_nullremove
+```
 
+---
+
+### Script 2 — Categorical Mapping & Deduplication (`*_duplicate_map.sql`)
+
+Purpose:
+- Group thousands of messy categorical DevType combinations into unified buckets
+- Normalize education levels  
+- Create experience buckets (Beginner → Leader)
+- Create age bucket mapping (2025 only)
+- Create primary DevRole classification
+- Remove duplicates based on multi-column keys
+
+Key elements:
+- Extensive CASE mappings for DevType (backend, frontend, ML, cloud, DevOps, etc.)
+- Education mapping (primary → doctorate)
+- Experience bucket via SAFE_CAST(YearsCodePro)
+- Dedupe using ROW_NUMBER and PARTITION BY
+
+Ensures dataset consistency across years.
+
+---
+
+### Script 3 — Outlier Removal (`*_no_null_no_outliers_final.sql`)
+
+Purpose:
+- Remove outliers from numeric variables using IQR method  
+- Keep salary NULL values (do not remove missing salaries)
+- Remove salary outliers only where salary exists
+- Keep rows with missing employment or missing salary
+- Apply realistic constraints on YearsCode, YearsCodePro, WorkExp
+
+Key logic:
+- Compute IQR using APPROX_QUANTILES
+- Apply bounds to YearsCode and WorkExp
+- Apply salary outlier filtering conditionally:
+  ```
+  CompTotal IS NULL OR LOG(CompTotal) BETWEEN lower AND upper
+  ```
+
+Final datasets maintain maximum retention while ensuring data quality.
+
+---
+
+## 5.3 Cleaning Pipeline 3 — Python Pandas
+
+After SQL cleaning, Python is used for:
+
+- Median/mode imputation
+- Feature extraction
+- Encoding (one-hot, target encoding)
+- Additional bucketization
+- Salary normalization
+- AI adoption indicators
+- Composite risk scoring
+
+Files stored under:
+```
+/src/data_cleaning/python_cleaning/
+```
+
+---
+
+## 6. Feature Engineering
+
+Examples of engineered features:
+
+- AI exposure index  
+- Composite skill readiness score  
+- Final job risk score  
+- Salary normalization (log scaling)  
+- Age bucket mapping  
+- DevRole unified categories  
+- Experience bucket (Beginner → Leader)  
+- Year trend indicators  
+
+Additional engineered metrics:
+- Layoff ratio
+- Technology adoption indicators
+- Remote work classification
+
+---
+
+## 7. Analysis & Insights (Upcoming)
+
+Planned analyses:
+
+- Trends in AI tool adoption (2020 vs 2025)
+- Salary comparison by country, DevRole, experience level
+- Workforce automation and job displacement analysis
+- Technology stacks used across years
+- Programming language shifts
+- Cloud, DevOps, and AI stack adoption
+- Global unemployment patterns (World Bank dataset)
+
+---
+
+## 8. Dashboards (Upcoming)
+
+Will be developed using:
+- Power BI
+- Excel pivot dashboards
+- Possibly interactive dashboards (Plotly)
+
+The dashboards will show:
+- Job trend heatmaps
+- AI exposure across industries
+- Salary distribution comparisons
+- Skill demand forecasts
+
+---
+
+## 9. Machine Learning (Upcoming)
+
+Planned ML tasks:
+- Salary prediction model
+- Job risk classification (low → high)
+- Industry trend forecasting
+- Clustering developers by skill set
+- NLP on job descriptions
+- Generative AI adoption prediction
+
+---
+
+## 10. API Integration (Upcoming)
+
+A FastAPI layer will be built to:
+- Serve cleaned datasets
+- Provide ML predictions
+- Allow external applications to consume insights
+
+---
+
+## 11. Reproducibility
+
+### SQL scripts stored in:
+```
+src/data_cleaning/scripts/
+```
+
+### Cleaned datasets stored in:
+```
+data/cleaned/
+```
+
+### Raw datasets stored in:
+```
+data/raw/
+```
+
+This separation ensures the entire ETL pipeline is reproducible end-to-end.
+
+---
+
+## 12. Summary
+
+This project is structured like a real-world analytics and data engineering system:
+- Multi-source ingestion  
+- Multi-stage ETL  
+- Feature engineering  
+- Structured analysis  
+- Modeling pipeline  
+- API deployment  
+
+This demonstrates broad technical capability across the full data lifecycle.
