@@ -199,22 +199,126 @@ Final datasets maintain maximum retention while ensuring data quality.
 
 ## 5.3 Cleaning Pipeline 3 — Python Pandas
 
-After SQL cleaning, Python is used for:
+# 🧹 Data Cleaning Pipeline --- *Luke Tech Jobs Dataset*
 
-- Median/mode imputation
-- Feature extraction
-- Encoding (one-hot, target encoding)
-- Additional bucketization
-- Salary normalization
-- AI adoption indicators
-- Composite risk scoring
+This section describes the complete data-cleaning workflow applied to
+the **Luke Tech Jobs Dataset**.\
+The goal was to convert messy, inconsistent job-posting data into a
+clean, analysis-ready dataset.
 
-Files stored under:
-```
-/src/data_cleaning/python_cleaning/
-```
+------------------------------------------------------------------------
 
----
+## ✅ 1. Standardized Column Names
+
+All columns were converted to **snake_case** for consistency and easier
+manipulation in Python.
+
+------------------------------------------------------------------------
+
+## ✅ 2. Job Title Cleaning
+
+-   `job_title_short` required no transformation.
+-   `job_title` cleaned with whitespace stripping and title-casing.
+
+------------------------------------------------------------------------
+
+## ✅ 3. City Extraction from `job_location`
+
+A custom heuristic was used to extract **city names**:
+
+-   Convert text to lowercase and strip whitespace\
+-   Split on comma and take the first segment\
+-   Remove invalid entries (e.g., `remote`, `hybrid`, `on-site`, etc.)\
+-   Use a **dynamic country blocklist** derived from `job_country`\
+    to eliminate country-only entries\
+-   Reject values containing digits\
+-   Clean and return properly formatted city names
+
+All ambiguous or invalid locations were set to `None`.
+
+------------------------------------------------------------------------
+
+## ✅ 4. Job Posted Date Normalization
+
+The `job_posted_date` column was processed to extract only the **date
+component** (`YYYY-MM-DD`) using safe datetime parsing.
+
+------------------------------------------------------------------------
+
+## ✅ 5. Unified Salary Column --- `salary_adjusted`
+
+A new annual salary feature was created:
+
+-   If `salary_year_avg` exists → use it\
+-   Else if `salary_hour_avg` exists → convert using **2080
+    hours/year**\
+-   Else → return `None`
+
+This produces a consistent, comparable annual salary metric.
+
+------------------------------------------------------------------------
+
+## ✅ 6. Company Name Cleaning
+
+A simplified, regex-free cleaning process was applied:
+
+-   Lowercasing and trimming\
+-   Removing punctuation (`(`, `)`, `,`, `.`, `-`)\
+-   Splitting into tokens\
+-   Removing corporate suffixes (e.g., `inc`, `llc`, `corp`, `ltd`,
+    etc.)\
+-   Reassembling and title-casing the final name
+
+------------------------------------------------------------------------
+
+## ✅ 7. Skill List Normalization & Explosion
+
+-   Removed brackets and quotes from `job_skills`\
+-   Converted string into a list using `.split(",")`\
+-   Created `skill_list` column\
+-   Used `.explode()` to convert each skill into its own row for
+    skill-level analysis
+
+------------------------------------------------------------------------
+
+## ✅ 8. Job Portal Cleaning --- `job_portal_clean`
+
+A robust cleaning function was built (without regex), handling:
+
+-   Removal of prefixes like `via`, `@`, `|`, `-`\
+-   Removal of ATS systems (e.g., `icims`, `teamtailor`, `jazzhr`,
+    `workday`, etc.)\
+-   Removal of domains, URLs, and IP addresses\
+-   Filtering out non-alphabetic noise (multilingual garbage, symbols)\
+-   Splitting into words and reconstructing clean names\
+-   Using `country_blocklist` to reduce `"Linkedin India"` →
+    `"Linkedin"`\
+-   Title-casing the final value
+
+This produces a clean representation of the job portal or posting
+source.
+
+------------------------------------------------------------------------
+
+## 🎉 Final Result
+
+The dataset is now:
+
+-   Consistent\
+-   Fully cleaned\
+-   Ready for analysis, visualization, and modeling
+
+Key enriched fields include:
+
+-   `city`\
+-   `job_date`\
+-   `salary_adjusted`\
+-   `company_clean`\
+-   `skill_list`\
+-   `job_portal_clean`
+
+This concludes the data-cleaning phase for the **Luke Tech Jobs
+Dataset**.
 
 ## 6. Feature Engineering
 
