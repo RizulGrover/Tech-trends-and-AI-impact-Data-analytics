@@ -2,7 +2,7 @@ import os
 from google.cloud import bigquery
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 def get_bq_client():
     client = bigquery.Client.from_service_account_json(
