@@ -64,11 +64,11 @@ END AS EducationLevel,
 
 
 CASE
-  WHEN SAFE_CAST(YearsCodePro AS INT64) < 5 THEN "Beginner"
-  WHEN SAFE_CAST(YearsCodePro AS INT64) BETWEEN 5 AND 10 THEN "Mid-Level"
-  WHEN SAFE_CAST(YearsCodePro AS INT64) BETWEEN 11 AND 18 THEN "Senior"
-  WHEN SAFE_CAST(YearsCodePro AS INT64) BETWEEN 19 AND 25 THEN "Expert"
-  WHEN SAFE_CAST(YearsCodePro AS INT64) > 25 THEN "Leader"
+  WHEN SAFE_CAST(YearsCodePro AS INT64) < 4 THEN "Beginner"
+  WHEN SAFE_CAST(YearsCodePro AS INT64) BETWEEN 4 AND 8 THEN "Mid-Level"
+  WHEN SAFE_CAST(YearsCodePro AS INT64) BETWEEN 9 AND 14 THEN "Senior"
+  WHEN SAFE_CAST(YearsCodePro AS INT64) BETWEEN 15 AND 20 THEN "Expert"
+  WHEN SAFE_CAST(YearsCodePro AS INT64) >= 21 THEN "Leader"
   ELSE "Did Not Specify"
 END AS ExpBucket,
 

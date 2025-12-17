@@ -15,6 +15,14 @@ def run_query(sql):
     client = get_bq_client()
     return client.query(sql).to_dataframe()
 
+
+def run_update_query(sql):
+    client = get_bq_client()
+    job = client.query(sql)
+    job.result()
+    return job
+
+
 def write_df_to_bq(df, dataset, table):
     client = get_bq_client()
     table_id = f"{os.getenv('GCP_PROJECT_ID')}.{dataset}.{table}"
