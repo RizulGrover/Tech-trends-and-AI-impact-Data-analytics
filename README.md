@@ -166,7 +166,7 @@ The repository is organized to reflect a real-world, end-to-end analytics and da
 *(Final Project flow is documented in later sections)*
 #### Some visuals :
 
-**1. Cleaning Script**
+**1. Automatic downloading script**
 
 ![Cleaning Demo](docs/project_documentation_files/data_acquisition/download_script_cut.gif)
 
@@ -522,4 +522,4 @@ By linking skill usage with compensation patterns, the dashboard highlights whic
 
 Power BI serves as the primary visualization and storytelling layer for the project. Data manipulation within Power BI is intentionally limited to calculated measures and light transformations, with all complex analytical logic handled upstream.
 
-For visualizations not natively supported in Power BI—such as **heatmaps and regression plots**—Python-based visuals are embedded directly into the dashboards. These scripts are version-controlled and integrated as part of the analytical workflow.
+For visualizations not natively supported in Power BI—such as **heatmaps and regression plots**—Python-based visuals are embedded directly into the dashboards. These scripts are version-controlled and integrated as part of the analytical workflow
