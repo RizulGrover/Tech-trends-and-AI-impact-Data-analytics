@@ -11,7 +11,6 @@ projectvenv/
 
 # Ignore all data folders
 data/
-docs/
 
 # OS
 .DS_Store
@@ -20,3 +19,5 @@ checkreadme.ipynb
 checkpython.py
 z-google-bigquery-key-name.txt
 *.svg
+anotherreadme.md
+readmeagain.md

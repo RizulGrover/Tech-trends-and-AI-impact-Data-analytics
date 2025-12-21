@@ -27,7 +27,7 @@ def fetch_remote_jobs():
     filepath="data/raw/web/remote_jobs.csv"
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
-    existing_urls=set()       # We use a set because it has faster duplicate checking
+    existing_urls=set()       
 
     if os.path.exists(filepath):
         with open(filepath, "r", newline="", encoding="utf-8") as file:
