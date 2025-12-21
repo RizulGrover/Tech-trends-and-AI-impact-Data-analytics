@@ -129,6 +129,47 @@ The project follows a structured, real-world analytics workflow:
 
 The sections that follow document each part of this workflow in detail, beginning with automated data acquisition.
 
+## 📂 Project Structure
+
+The repository is organized to reflect a real-world, end-to-end analytics and data engineering workflow. Each top-level directory corresponds to a distinct stage in the pipeline, with important subdirectories highlighted to show how responsibilities are separated without overwhelming the reader.
+
+```text
+.
+├── analysis/
+│   ├── notebooks/          # Dashboard-specific analysis notebooks
+│   └── sql/                # SQL queries organized by dashboard
+│
+├── dashboards/
+│   ├── python script visuals/   # Python scripts for custom visuals
+│   └── Complete_Dashboard.pbix  # Final Power BI dashboard
+│
+├── data/
+│   ├── raw/                # Raw datasets from all external sources
+│   └── cleaned/            # Cleaned, analysis-ready datasets
+│
+├── src/
+│   ├── data_acquisition/   # Automated data ingestion logic
+│   │   ├── config/         # Source configuration files
+│   │   └── scripts/        # Downloading and scraping scripts
+│   │
+│   ├── data_cleaning/      # SQL- and Python-based cleaning pipelines
+│   │   ├── BigQuery Scripts/
+│   │   └── python scripts/
+│   │
+│   └── engines/            # Reusable BigQuery engine and utilities
+│
+├── docs/
+│   ├── cleaning_pipeline_bigquery/   # BigQuery cleaning screenshots
+│   ├── cleaning_pipeline_powerquery/ # Power Query step-by-step visuals
+│   └── project_documentation_files/  # GIFs, demos, and workflow screenshots
+│
+├── projectvenv/            # Local Python virtual environment
+├── .env                    # Environment variables (excluded from version control)
+├── requirements.txt        # Python dependencies
+└── README.md               # Project documentation
+```
+
+
 ## Project flow preview snippets
 #### (Final Project flow is documented in later sections)
 #### Some visuals :
