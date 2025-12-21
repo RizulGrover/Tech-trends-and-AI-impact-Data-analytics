@@ -131,7 +131,8 @@ The sections that follow document each part of this workflow in detail, beginnin
 
 ## 📂 Project Structure
 
-The repository is organized to reflect a real-world, end-to-end analytics and data engineering workflow. Each top-level directory corresponds to a distinct stage in the pipeline, with important subdirectories highlighted to show how responsibilities are separated without overwhelming the reader.
+The repository is organized to reflect a real-world, end-to-end analytics and data engineering workflow. 
+
 
 ```text
 .
@@ -176,15 +177,15 @@ The repository is organized to reflect a real-world, end-to-end analytics and da
 
 1. Cleaning Script
 
-![Cleaning Demo](docs\project_documentation_files\data_acquisition\download_script_cut.gif)
+![Cleaning Demo](docs/project_documentation_files/data_acquisition/download_script_cut.gif)
 
 2. Bigquery Demo
 
-![BigQuery Demo](docs\project_documentation_files\data_cleaning\big_query_cleaning_final.gif)
+![BigQuery Demo](docs/project_documentation_files/data_cleaning/big_query_cleaning_final.gif)
 
 3. Dashboard Demo
 
-![Dashboard Demo](docs\project_documentation_files\dashboards\dashboard_video.gif)
+![Dashboard Demo](docs/project_documentation_files/dashboards/dashboard_video.gif)
 
 
 
@@ -484,7 +485,6 @@ The corresponding Python scripts are stored under the /dashboards/python script 
 ## 🧭 Project Flow (End-to-End Demonstration)
 
 This section demonstrates the complete execution flow of the project using selective screenshots and short screen recordings.
-The goal is to show how data moves through the system end-to-end, rather than documenting every script exhaustively.
 
 ---
 
@@ -495,21 +495,7 @@ The goal is to show how data moves through the system end-to-end, rather than do
 - Automated extraction of datasets
 - Creation of raw data directories
 
-![Data acquisition demo](## 🧭 Project Flow (End-to-End Demonstration)
-
-This section demonstrates the complete execution flow of the project using selective screenshots and short screen recordings.
-The goal is to show how data moves through the system end-to-end, rather than documenting every script exhaustively.
-
----
-
-### ⚙️ Step 1: Automated Data Acquisition
-
-**What is demonstrated**
-- Execution of a data download script
-- Automated extraction of datasets
-- Creation of raw data directories
-
-![Data acquisition demo](docs\project_documentation_files\data_acquisition\download_script_cut.gif)
+![Data acquisition demo](docs/project_documentation_files/data_acquisition/download_script_cut.gif)
 
 ---
 
@@ -520,18 +506,18 @@ The goal is to show how data moves through the system end-to-end, rather than do
 
 - Power Query transformation steps
 
-![Power Query steps1](docs\project_documentation_files\data_cleaning\AI_impact_data\pq_full_steps.png)
-![Power Query steps2](docs\project_documentation_files\data_cleaning\layoffs_data\pq_total_steps.png)
+![Power Query steps1](docs/project_documentation_files/data_cleaning/AI_impact_data/pq_full_steps.png)
+![Power Query steps2](docs/project_documentation_files/data_cleaning/layoffs_data/pq_total_steps.png)
 
 
 - SQL-based data cleaning in BigQuery
 
-![SQL cleaning](docs\project_documentation_files\data_cleaning\big_query_cleaning_final.gif)
+![SQL cleaning](docs/project_documentation_files/data_cleaning/big_query_cleaning_final.gif)
 
 
 - Python (Pandas) data cleaning scripts
 
-![Python cleaning](docs\project_documentation_files\data_cleaning\python_cleaning_final.gif)
+![Python cleaning](docs/project_documentation_files/data_cleaning/python_cleaning_final.gif)
 
 
 ---
@@ -541,7 +527,7 @@ The goal is to show how data moves through the system end-to-end, rather than do
 **What is demonstrated**
 - BigQuery engine responsible for query execution and table management
 
-![BigQuery engine abstraction](docs\project_documentation_files\engine\engine_script.png)
+![BigQuery engine abstraction](docs/project_documentation_files/engine/engine_script.png)
 
 ---
 
@@ -550,17 +536,17 @@ The goal is to show how data moves through the system end-to-end, rather than do
 **What is demonstrated**
 - SQL script example
 
-![SQL script](docs\project_documentation_files\data_analysis\part1_analysis_sql.png)
+![SQL script](docs/project_documentation_files/data_analysis/part1_analysis_sql.png)
 
 
 - SQL files executed through Python
 
-![SQL execution via Python](docs\project_documentation_files\data_analysis\part2_analysis_final.gif)
+![SQL execution via Python](docs/project_documentation_files/data_analysis/part2_analysis_final.gif)
 
 
 - Analytical tables written back to BigQuery
 
-![Back to bigquery](docs\project_documentation_files\data_analysis\part3_analysis_sql_query_reading_and_updating_to_bigquery.png)
+![Back to bigquery](docs/project_documentation_files/data_analysis/part3_analysis_sql_query_reading_and_updating_to_bigquery.png)
 
 ---
 
@@ -571,8 +557,7 @@ The goal is to show how data moves through the system end-to-end, rather than do
 - Selection of cleaned and derived tables
 - Successful dataset refresh
 
-![Power BI BigQuery connection](docs/screenshots/powerbi_integration/bq_connection.png)
-![Dataset selection](docs/screenshots/powerbi_integration/dataset_tables.png)
+![Power BI BigQuery connection](docs/project_documentation_files/dashboards/powerbi_and_bigquery_integration.png)
 
 ---
 
@@ -582,64 +567,9 @@ The goal is to show how data moves through the system end-to-end, rather than do
 - One complete dashboard
 - Interactive filters and visuals
 
-![Dashboard demo](docs/demos/step6_dashboard_demo.gif)
-)
+![Dashboard demo](docs/project_documentation_files/dashboards/dashboard_video.gif)
 
 ---
-
-### 🧹 Step 2: Data Cleaning & Transformation
-
-**What is demonstrated**
-- SQL-based data cleaning in BigQuery
-- Python (Pandas) data cleaning scripts
-- Power Query transformation steps
-
-![SQL cleaning](docs/screenshots/data_cleaning/sql_cleaning.png)
-![Python cleaning](docs/screenshots/data_cleaning/python_cleaning.png)
-![Power Query steps](docs/screenshots/data_cleaning/power_query_steps.png)
-
----
-
-### 🧠 Step 3: BigQuery Engine Abstraction
-
-**What is demonstrated**
-- BigQuery engine responsible for query execution and table management
-
-![BigQuery engine abstraction](docs/screenshots/bigquery_engine/engine_script.png)
-
----
-
-### 🧾 Step 4: SQL Execution via Python Orchestration
-
-**What is demonstrated**
-- SQL files executed through Python
-- Analytical tables written back to BigQuery
-
-![SQL execution via Python](docs/demos/step4_sql_execution.gif)
-
----
-
-### 🎯 Step 5: Power BI ↔ BigQuery Integration
-
-**What is demonstrated**
-- Power BI connected directly to BigQuery
-- Selection of cleaned and derived tables
-- Successful dataset refresh
-
-![Power BI BigQuery connection](docs/screenshots/powerbi_integration/bq_connection.png)
-![Dataset selection](docs/screenshots/powerbi_integration/dataset_tables.png)
-
----
-
-### 📊 Step 6: Dashboard Output Demonstration
-
-**What is demonstrated**
-- One complete dashboard
-- Interactive filters and visuals
-
-![Dashboard demo](docs/demos/step6_dashboard_demo.gif)
-
-
 
 
 ## 📊 Dashboards and Analytical Outputs
